@@ -1,0 +1,18 @@
+<div class="post_title container">
+<h1><%= post.title %></h1>
+</div>
+
+<div class="posts_body">
+<%= post.body %>
+</div>
+
+<div class="panel-footer">
+<% if logged_in? %>
+<b>Author: </b><%= User.find(post.user_id).name %> 
+
+<% else %>
+
+Log in to see who wrote it
+<% end %>
+
+</div>

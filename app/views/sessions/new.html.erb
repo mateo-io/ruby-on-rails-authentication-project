@@ -1,0 +1,14 @@
+<% provide(:title, "Log In") %>
+
+<%= form_for(:session, url: login_path)do |f| %>
+
+
+<%= f.label :email %>
+<%= f.text_field :email, placeholder: "matt@mejia.com" %>
+
+<%= f.label :password %>
+<%= f.password_field :password, placeholder: "123456" %>
+
+<%= f.submit "Log In", class: "btn btn-lg btn-primary" %>
+
+<% end %>

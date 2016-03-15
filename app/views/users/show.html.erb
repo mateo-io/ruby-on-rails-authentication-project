@@ -1,0 +1,11 @@
+<% provide(:title, "Gossiper") %>
+<h1> User profile</h1>
+
+<p>
+<%= @user.name %>
+</p>
+
+<div class=container>
+<% render @user.posts %>
+
+</div>

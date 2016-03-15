@@ -1,0 +1,17 @@
+<% provide(:title, "Lobby") %>
+
+
+
+<div class="center"><h1> Posts </h1>
+
+<!-- POSTS ARE HERE -->
+<div class="container jumbotron">
+
+<% @posts.each do |post| %>
+
+<%= render post %>
+
+<% end %>
+
+</div>
+</div>
