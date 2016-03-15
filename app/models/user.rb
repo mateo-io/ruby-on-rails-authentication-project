@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 	attr_accessor :remember_token
+	before_create :create_token 
+	
 	#One to many R with posts
 	has_many :posts
 	
@@ -18,7 +20,6 @@ class User < ActiveRecord::Base
 
 	def User.new_token
 		SecureRandom.urlsafe_base64
-		
 	end
 
 	def User.encrypt(token)
@@ -26,7 +27,14 @@ class User < ActiveRecord::Base
 	end
 
 	def create_token
-		self.remember_token= User.new_token
-		update_attribute(:remember_digest, User.encrypt(remember_token))
+		self.remember_token=User.new_token
+		#update_attribute(:remember_digest, User.encrypt(remember_token))
+		self.remember_digest=User.encrypt(remember_token)
+	end
+
+	#Authenticate token
+	def authenticated?(remember_token)
+	   return false if remember_digest.nil?
+	   User.encrypt(remember_digest).is_password?(remember_token)
 	end
 end
